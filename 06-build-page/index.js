@@ -47,7 +47,8 @@ const path = require('path');
 
         if (Object.keys(obj).length === filesHTML.length) {
           for (key in obj) {
-            templateData = templateData.toString().replace(`{{${key}}}`, obj[key]);
+            let regexp = new RegExp(`{{${key}}}`, 'g')
+            templateData = templateData.toString().replace(regexp, obj[key]);
           }
 
           fs.appendFile(projectIndexHTMLPath, templateData, error => {
